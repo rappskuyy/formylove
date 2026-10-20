@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Beautiful Queen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="love.png">
+    <style>
+        #pinGate {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: rgba(255, 247, 242, .96);
+            backdrop-filter: blur(8px);
+        }
+
+        #pinGate[hidden] {
+            display: none;
+        }
+
+        .pin-card {
+            width: min(100%, 390px);
+            padding: 38px 30px 32px;
+            border: 2px solid #8B1538;
+            border-radius: 18px;
+            background: #fffdfb;
+            box-shadow: 0 18px 55px rgba(75, 27, 43, .12);
+            text-align: center;
+        }
+
+        .pin-mark {
+            margin: 0 0 10px;
+            color: #8B1538;
+            font-size: 27px;
+        }
+
+        .pin-card h1 {
+            margin: 0;
+            color: #8B1538;
+            font-family: Georgia, serif;
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .pin-card p {
+            margin: 12px 0 22px;
+            color: #6f5c5c;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .pin-card input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d9c5c6;
+            border-radius: 8px;
+            background: #fff;
+            font: inherit;
+            font-size: 20px;
+            letter-spacing: .35em;
+            text-align: center;
+        }
+
+        .pin-card button {
+            width: 100%;
+            margin-top: 13px;
+            padding: 13px 20px;
+            border: 0;
+            border-radius: 8px;
+            background: #8B1538;
+            color: #fff;
+        }
+
+        .pin-error {
+            min-height: 20px;
+            margin: 12px 0 0 !important;
+            color: #a32039 !important;
+            font-size: 12px !important;
+        }
+
+        #birthdayIntro {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            border: 0;
+            border-radius: 0;
+            background: #fff;
+        }
+
+        #birthdayIntro.is-visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section id="pinGate" aria-labelledby="pinTitle">
+        <form class="pin-card" id="pinForm">
+            <div class="pin-mark" aria-hidden="true">♡</div>
+            <h1 id="pinTitle">For My Beautiful Queen</h1>
+            <p>Masukkan PIN untuk membuka</p>
+            <label class="sr-only" for="pinInput">PIN</label>
+            <input id="pinInput" name="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" required>
+            <button type="submit">BUKA KEJUTAN</button>
+            <p class="pin-error" id="pinError" aria-live="polite"></p>
+        </form>
+    </section>
+    <iframe id="birthdayIntro" title="Ucapan ulang tahun"></iframe>
+
+    <!-- Musik -->
+    <audio id="bgMusic" loop>
+        <source src="dewi.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- buttonnya -->
+    <div class="music-control" id="musicToggle">🔊</div>
+
+    <!-- Page 1: -->
+    <div class="page active" id="page1">
+        <div class="character-img">
+            <img src="pngtree-cute-cat-holding-a-bouquet-of-flowers-vector-png-image_15885046.png" alt="Character" style="width: 110%; height: 110%; object-fit: contain;">
+        </div>
+        <h1 class="main-title">Helloooo<br><span class="my-love">viiona</span></h1>
+        <p class="subtitle">do you want to see your gift?</p>
+        <div class="button-container">
+            <button class="btn-yes" onclick="goToPage(2)">YES PLEASE</button>
+            <button class="btn-no" id="btnNo">NO THANKS</button>
+        </div>
+    </div>
+
+    <!-- Page 2:  -->
+    <div class="page" id="page2">
+        <h2>THESE ARE FOR YOU!</h2>
+        <p class="page2-subtitle">I hope you like it, I love you!</p>
+        <div class="icons-grid">
+            <div class="icon-item" onclick="goToPage(3)">
+                <div class="icon-circle">
+                    <img src="img/logop.png" alt="Photos" style="width: 150%; height: 150%; object-fit: contain;">
+                </div>
+            </div>
+            <div class="icon-item" onclick="goToPage(4)">
+                <div class="icon-circle">
+                    <img src="img/logo b.png" alt="Flowers" style="width: 150%; height: 150%; object-fit: contain;">
+                </div>
+            </div>
+            <div class="icon-item" onclick="goToPage(5)">
+                <div class="icon-circle">
+                    <img src="img/logo k.png" alt="Locks" style="width: 150%; height: 150%; object-fit: contain;">
+                </div>
+            </div>
+            <div class="icon-item" onclick="goToPage(6)">
+                <div class="icon-circle">
+                    <img src="img/logo s.png" alt="Letters" style="width: 150%; height: 150%; object-fit: contain;">
+                </div>
+            </div>
+            <div class="icon-item" onclick="goToPage(7)">
+                <div class="icon-circle">
+                    <img src="love.png" alt="Reasons I love you" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+            <div class="icon-item" onclick="goToPage(8)">
+                <div class="icon-circle plans-icon" aria-label="Things I want to do with you,,,">♡</div>
+            </div>
+        </div>
+        <section class="project-invitation" aria-labelledby="projectInvitationTitle">
+            <p class="invitation-eyebrow">DATEE WITH MEEE</p>
+            <h3 id="projectInvitationTitle">Sabtu, 24 Oktober</h3>
+            <p class="invitation-time">Pukul 12.00 WIB · ♡</p>
+            <div class="countdown" id="eventCountdown" aria-label="Hitung mundur menuju acara">
+                <div><span id="countdownDays">00</span><small>hari</small></div>
+                <div><span id="countdownHours">00</span><small>jam</small></div>
+                <div><span id="countdownMinutes">00</span><small>menit</small></div>
+                <div><span id="countdownSeconds">00</span><small>detik</small></div>
+            </div>
+            <p class="countdown-status" id="countdownStatus" aria-live="polite"></p>
+            <button class="join-invitation" id="joinInvitation" type="button">Mau ikut ♡</button>
+        </section>
+        <div class="bottom-line"></div>
+    </div>
+
+    <!-- page 3 -->
+    <div class="page" id="page3">
+        <div class="photos-container">
+            <div class="photos-grid-scattered">
+                <!-- kiri -->
+                <div class="photo-group left-group">
+                    <div class="photo-item" style="transform: rotate(-8deg);">
+                        <div class="photo-box">
+                            <img src="img/133ef2f8-ed55-4d46-a568-4f891aac5624.jpg" alt="Memory 1">
+                        </div>
+                        <div class="photo-arrow">→</div>
+                        <div class="photo-text">my fav picture</div>
+                    </div>
+                    <div class="photo-item" style="transform: rotate(5deg); margin-top: -30px;">
+                        <div class="photo-box">
+                            <img src="img/ac027c27-35c3-4701-9058-bf70508dca2a.jpg" alt="Memory 2">
+                        </div>
+                        <div class="photo-arrow">→</div>
+                        <div class="photo-text">receiving flowers from me</div>
+                    </div>
+                    <div class="photo-item" style="transform: rotate(-3deg); margin-top: -20px;">
+                        <div class="photo-box">
+                            <img src="img/2337bb67-48e8-4f26-81f4-8dac4400fdda.jpg" alt="Memory 3">
+                        </div>
+                        <div class="photo-arrow">→</div>
+                        <div class="photo-text"></div>
+                    </div>
+                </div>
+
+                <!-- foto tengah-->
+                <div class="photo-group center-group">
+                    <div class="photo-item-vertical">
+                        <div class="photo-box-vertical">
+                            <img src="img/394eb26d-2a5c-4334-94a7-695d4a89da98.jpg" alt="Memory 4">
+                        </div>
+                    </div>
+                    <div class="photo-item-vertical">
+                        <div class="photo-box-vertical">
+                            <img src="img/b03ba4ee-260b-41bd-85c9-19e410178c2c.jpg" alt="Memory 5">
+                        </div>
+                    </div>
+                    <div class="photo-item-vertical">
+                        <div class="photo-box-vertical">
+                            <img src="img/b03ba4ee-260b-41bd-85c9-19e410178c2c.jpg" alt="Memory 6">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- kanan -->
+                <div class="photo-group right-group">
+                    <div class="photo-item" style="transform: rotate(6deg);">
+                        <div class="photo-box">
+                            <img src="img/84e8341b-0e27-4ebc-9ce4-cf4df8c20753.jpg" alt="Memory 7">
+                        </div>
+                        <div class="photo-arrow left-arrow">←</div>
+                        <div class="photo-text">her smile has been sweet since she was little</div>
+                    </div>
+                    <div class="photo-item" style="transform: rotate(-4deg); margin-top: -30px;">
+                        <div class="photo-box">
+                            <img src="img/fff3dd40-9a5c-4aba-bf21-718f366ddc58.jpg" alt="Memory 8">
+                        </div>
+                        <div class="photo-arrow left-arrow">←</div>
+                        <div class="photo-text">little princess</div>
+                    </div>
+                    <div class="photo-item" style="transform: rotate(7deg); margin-top: -20px;">
+                        <div class="photo-box">
+                            <img src="img/9adf7d99-2bb0-4032-8e4f-611bfbe41588.jpg" alt="Memory 9">
+                        </div>
+                        <div class="photo-arrow left-arrow">←</div>
+                        <div class="photo-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-line"></div>
+        <h2 class="page-title">Captured Memories</h2>
+        <button class="btn-return" onclick="goToPage(2)">RETURN</button>
+        <div class="bottom-line"></div>
+    </div>
+
+    <!-- Page 4:  -->
+    <div class="page" id="page4">
+        <div class="flowers-container">
+            <div class="flower-messages-container">
+                <!-- kiri -->
+                <div class="left-messages">
+                    <div class="flower-message bubble-left">You're as beautiful as a bouquet of freshly bloomed flowers</div>
+                    <div class="flower-message bubble-left">Being around you feels like walking through a field of flowers</div>
+                    <div class="flower-message bubble-left">You brighten up the day just like a bunch of blooming flowers</div>
+                    <div class="flower-message bubble-left">Your kindness spreads like the scent of flowers in the spring</div>
+                    <div class="flower-message bubble-left">You're as lovely as a garden full of flowers after the rain</div>
+                </div>
+
+                <!-- flower -->
+                <div class="flower-center-wrapper">
+                    <div class="flower-center">
+                        <img src="img/lily.png" alt="Flower Bouquet" style="width: 135%; height: 135%; object-fit: contain;margin-left: -12px;">
+                    </div>
+                    <div class="flower-label-box">
+                        <div class="flower-label">FLOWER</div>
+                        <div class="flower-name">Lily</div>
+                    </div>
+                </div>
+
+                <!-- kanan -->
+                <div class="right-messages">
+                    <div class="flower-message bubble-right">Spending time with you is like receiving a surprise bouquet</div>
+                    <div class="flower-message bubble-right">Just like flowers, you make everything around you more vibrant</div>
+                    <div class="flower-message bubble-right">Your presence is as comforting as holding a warm bouquet close</div>
+                    <div class="flower-message bubble-right">You bring color to life, the way flowers bring color to the earth</div>
+                    <div class="flower-message bubble-right">You're as gentle and graceful as petals dancing in the breeze</div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-line"></div>
+        <h2 class="page-title">Favorite Flowers</h2>
+        <button class="btn-return" onclick="goToPage(2)">RETURN</button>
+        <div class="bottom-line"></div>
+    </div>
+
+    <!-- Page 5:  -->
+    <div class="page" id="page5">
+        <p class="song-intro">this song reminds me of you (>ᴗ<)</p>
+        <div class="video-container">
+            <iframe
+                class="youtube-player"
+                src="https://www.youtube-nocookie.com/embed/CVEPAN2eLYg"
+                title="Bukan Pujangga - Base Jam"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <h3 class="song-title">- Bukan Pujangga - Base Jam </h3>
+        <button class="song-time-btn">secret message: 1:16 - 2:00</button>
+        <div class="bottom-line"></div>
+        <h2 class="page-title">Song About You</h2>
+        <button class="btn-return" onclick="goToPage(2)">RETURN</button>
+        <div class="bottom-line"></div>
+    </div>
+
+    <!-- Page 6: Message -->
+    <div class="page" id="page6">
+        <h2 class="message-title">HAPPY READING, MY LOVE!</h2>
+        <div class="message-content">
+            <p> </p>
+            
+            <p>Happy 16th birthday, my sweetest Viona. ♡<br><br>
+
+Today is all about you, the girl who somehow found her way into my heart and made it feel like the most beautiful place in the world. I wish I could put into words how grateful I am to have you in my life, but even a thousand letters would never be enough to explain how special you are to me.<br><br>
+
+As you turn sixteen, I hope life treats you with the same kindness you give to everyone around you. May your days be filled with little things that make you happy, unexpected moments that make you smile, and dreams that slowly turn into beautiful realities. And whenever life feels a little too heavy, I hope you remember that you don't have to figure everything out all at once. You're allowed to grow at your own pace, make mistakes, and discover the world in your own way.<br><br>
+
+If there's one thing I wish for you, it's that you could see yourself through my eyes, even just for a moment. Maybe then you'd understand why your smile means so much to me, why the smallest things about you can make my day, and why being able to call you mine is something I'll never take for granted. You don't have to be perfect to be loved, Viona. You already mean so much to me just by being yourself.<br><br>
+
+Sometimes, I catch myself imagining all the little adventures waiting for us in the future. Walking through unfamiliar streets in a city we've always wanted to visit, collecting memories from places we've never been, taking silly photobooth pictures that we'll probably laugh at years later, and spending ordinary days together that somehow become our favorite memories. I don't just want the big, exciting moments with you. I want the simple ones, too, because I think even the most ordinary day could become something beautiful with you in it.<br><br>
+
+I know we can't predict everything that life has planned for us, but I hope we keep choosing to understand each other, to grow together, and to make more room for each other's dreams. I hope that as we get older, we'll have more stories to tell, more pictures to look back on, and more reasons to be grateful that our paths crossed.<br><br>
+
+So, my love, here's to your sixteenth birthday and all the beautiful things waiting for you ahead. I hope this year brings you closer to the person you dream of becoming. I'll always be proud of you for trying, for growing, and for being the wonderful girl that you are. And on the days when you forget how amazing you are, I hope I can remind you.<br><br>
+
+Thank you for being a part of my story and for letting me be a part of yours. If I could make one birthday wish for myself, it would be to have many more chances to celebrate you, to see you happy, and to create memories with you that we'll carry in our hearts for years to come.<br><br>
+
+Happy 16th birthday, my love, my favorite person, and my sweetest Viona. I hope today reminds you of just how loved you are. No matter how much the world changes and how many new chapters we have yet to write, I hope we keep finding our way into each other's happiest memories.<br><br>
+
+I love you, more than I could ever fit into a birthday message. Today is your special day, but having you in my life feels like a gift to me, too. ♡</p>
+            
+            <p class="signature">Raffasya Javas Niscala W,<br>Made With Heart❤️</p>
+        </div>
+        <div class="bottom-line"></div>
+        <h2 class="page-title">Message for my love</h2>
+        <button class="btn-return" onclick="goToPage(2)">RETURN</button>
+        <div class="bottom-line"></div>
+    </div>
+
+    <!-- Page 7: Reasons -->
+    <div class="page" id="page7">
+        <h2 class="page-title reasons-title">Reasons I Love You</h2>
+        <p class="reasons-intro">A few things I really like about you.</p>
+        <div class="reasons-grid">
+            <article class="reason-card reason-card-one">
+                <div class="reason-photo">
+                    <img src="img/foto1.jpg" alt="viionaa cantik">
+                </div>
+                <span class="reason-number">01</span>
+                <p>You're really beautiful, inside and out.</p>
+            </article>
+            <article class="reason-card reason-card-two">
+                <div class="reason-photo">
+                    <img src="img/foto2.jpg" alt="viiona cantik">
+                </div>
+                <span class="reason-number">02</span>
+                <p>You're kind and thoughtful to the people around you.</p>
+            </article>
+            <article class="reason-card reason-card-three">
+                <div class="reason-photo">
+                    <img src="img/foto3.jpg" alt="viiona cantik">
+                </div>
+                <span class="reason-number">03</span>
+                <p>Your smile and laugh make ordinary days better.</p>
+            </article>
+        </div>
+        <p class="reasons-note">And, of course, many more little things ♡</p>
+        <button class="btn-return" onclick="goToPage(2)">RETURN</button>
+    </div>
+
+    <!-- Page 8: Things I want to do together -->
+    <div class="page" id="page8">
+        <h2 class="page-title plans-title">Things I want to do with you</h2>
+        <p class="plans-intro">A few little dreams I hope we get to share ♡</p>
+        <div class="plans-grid">
+            <article class="plan-card plan-card-one">
+                <span class="plan-number">01</span>
+                <span class="plan-icon" aria-hidden="true">✈</span>
+                <h3>Go to New York with you.</h3>
+            </article>
+            <article class="plan-card plan-card-two">
+                <span class="plan-number">02</span>
+                <span class="plan-icon" aria-hidden="true">🌍</span>
+                <h3>Travel the whole world together.</h3>
+            </article>
+            <article class="plan-card plan-card-three">
+                <span class="plan-number">03</span>
+                <span class="plan-icon" aria-hidden="true">⌂</span>
+                <h3>Live together someday.</h3>
+            </article>
+            <article class="plan-card plan-card-four">
+                <span class="plan-number">04</span>
+                <span class="plan-icon" aria-hidden="true">♡</span>
+                <h3>Hug you for a really, really long time.</h3>
+            </article>
+            <article class="plan-card">
+                <span class="plan-number">05</span>
+                <span class="plan-icon" aria-hidden="true">☾</span>
+                <h3>Fall asleep in your arms.</h3>
+            </article>
+            <article class="plan-card">
+                <span class="plan-number">06</span>
+                <span class="plan-icon" aria-hidden="true">📷</span>
+                <h3>Take pictures of every little moment.</h3>
+            </article>
+            <article class="plan-card">
+                <span class="plan-number">07</span>
+                <span class="plan-icon" aria-hidden="true">✧</span>
+                <h3>Go on spontaneous adventures together.</h3>
+            </article>
+            <article class="plan-card">
+                <span class="plan-number">08</span>
+                <span class="plan-icon" aria-hidden="true">🎂</span>
+                <h3>Celebrate all your birthdays together.</h3>
+            </article>
+            <article class="plan-card">
+                <span class="plan-number">09</span>
+                <span class="plan-icon" aria-hidden="true">∞</span>
+                <h3>Grow old and spend my life with you.</h3>
+            </article>
+            <article class="plan-card">
+                <span class="plan-number">10</span>
+                <span class="plan-icon" aria-hidden="true">♡</span>
+                <h3>Take photobooth pictures in every place we visit ♡</h3>
+            </article>
+        </div>
+        <p class="plans-note">One day at a time, with you ♡</p>
+        <button class="btn-return" onclick="goToPage(2)">RETURN</button>
+    </div>
+
+
+            
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
